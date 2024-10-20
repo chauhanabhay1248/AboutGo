@@ -1,0 +1,2 @@
+# AboutGo
+Go Init
