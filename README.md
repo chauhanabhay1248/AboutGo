@@ -23,3 +23,8 @@ or
 - interface {} -
     it represents the empty interface, it can hold value of any type.
 ```
+
+***Case Statements:***
+```
+- if else if else
+```

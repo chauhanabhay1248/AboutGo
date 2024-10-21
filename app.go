@@ -9,6 +9,7 @@ func main() {
 	pout("Hello World !!")
 	pout(investment_calculator_with_variables())
 	pout(profile_calculator_with_user_input())
+	pout(bank_case_statement())
 }
 
 func investment_calculator_with_variables() string {
@@ -50,6 +51,47 @@ func profile_calculator_with_user_input() string {
 	fmt.Printf("Profit: %v\n", profit)
 	fmt.Printf("Ratio: %f\n", ratio)
 	return "Profit Calculator Done \n"
+}
+
+func bank_case_statement() string {
+	fmt.Println("Welcome to Bank !!")
+
+	currentAmount := 1000
+	for {
+		fmt.Println("Enter Choice: ")
+		fmt.Println("1 for Show Amount")
+		fmt.Println("2 for Deposit Amount")
+		fmt.Println("3 for Withdraw Amount")
+		fmt.Println("4 for Exit")
+
+		var choice int
+		fmt.Scan(&choice)
+
+		if choice == 1 {
+			fmt.Println("Current Amount is ", currentAmount)
+		} else if choice == 2 {
+			fmt.Println("Enter Amount To Deposit: ")
+			var depositAmount int
+			fmt.Scan(&depositAmount)
+			currentAmount = currentAmount + depositAmount
+			fmt.Println("Updated Amount is ", currentAmount)
+		} else if choice == 3 {
+			fmt.Println("Enter Amount To Withraw: ")
+			var withrawAmount int
+			fmt.Scan(&withrawAmount)
+			if currentAmount-withrawAmount < 0 {
+				fmt.Println("Not Enough Balance.")
+				continue
+			} else {
+				currentAmount = currentAmount - withrawAmount
+			}
+			fmt.Println("Updated Amount is ", currentAmount)
+		} else {
+			fmt.Println("Thank you !!")
+			break
+		}
+	}
+	return "Bank Done \n"
 }
 
 func pout(val interface{}) {
