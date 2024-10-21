@@ -24,12 +24,12 @@ or
     it represents the empty interface, it can hold value of any type.
 ```
 
-***Case Statements:***
+**Case Statements:**
 ```
 - if else if else
 ```
 
-***Loops***
+**Loops**
 ```
 - for i := 0; i < 200; i ++ {}
 - for {} # infinete loop
@@ -42,7 +42,7 @@ or
 }
 ```
 
-***Error Handling***
+**Error Handling**
 ```
 - nil - special key to show the absence of value of variable
 ```

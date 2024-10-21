@@ -62,7 +62,7 @@ func bank_case_statement() string {
 	currentAmount, err := readFromFile()
 	if err != nil {
 		fmt.Println("Error: ", err)
-		return ""
+		panic("Can't continue because of error !!")
 	}
 	for {
 		fmt.Println("Enter Choice: ")
