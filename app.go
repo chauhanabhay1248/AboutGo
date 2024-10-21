@@ -1,8 +1,11 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
+	"os"
+	"strconv"
 )
 
 func main() {
@@ -56,7 +59,11 @@ func profile_calculator_with_user_input() string {
 func bank_case_statement() string {
 	fmt.Println("Welcome to Bank !!")
 
-	currentAmount := 1000
+	currentAmount, err := readFromFile()
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return ""
+	}
 	for {
 		fmt.Println("Enter Choice: ")
 		fmt.Println("1 for Show Amount")
@@ -71,19 +78,21 @@ func bank_case_statement() string {
 			fmt.Println("Current Amount is ", currentAmount)
 		} else if choice == 2 {
 			fmt.Println("Enter Amount To Deposit: ")
-			var depositAmount int
+			var depositAmount float64
 			fmt.Scan(&depositAmount)
 			currentAmount = currentAmount + depositAmount
+			writeIntoFile(currentAmount)
 			fmt.Println("Updated Amount is ", currentAmount)
 		} else if choice == 3 {
 			fmt.Println("Enter Amount To Withraw: ")
-			var withrawAmount int
+			var withrawAmount float64
 			fmt.Scan(&withrawAmount)
 			if currentAmount-withrawAmount < 0 {
 				fmt.Println("Not Enough Balance.")
 				continue
 			} else {
 				currentAmount = currentAmount - withrawAmount
+				writeIntoFile(currentAmount)
 			}
 			fmt.Println("Updated Amount is ", currentAmount)
 		} else {
@@ -96,4 +105,24 @@ func bank_case_statement() string {
 
 func pout(val interface{}) {
 	fmt.Println(val)
+}
+
+const fileName = "data.txt"
+
+func writeIntoFile(data float64) {
+	stringData := fmt.Sprint((data))
+	os.WriteFile(fileName, []byte(stringData), 0644)
+}
+
+func readFromFile() (float64, error) {
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		return 1000, errors.New("Failed to fetch data from file")
+	}
+	stringData := string(data)
+	floatData, err := strconv.ParseFloat(stringData, 64)
+	if err != nil {
+		return 1000, errors.New("Failed to parse string")
+	}
+	return floatData, nil
 }

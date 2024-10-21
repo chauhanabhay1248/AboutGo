@@ -28,3 +28,21 @@ or
 ```
 - if else if else
 ```
+
+***Loops***
+```
+- for i := 0; i < 200; i ++ {}
+- for {} # infinete loop
+- switch x {
+    case 1:
+        # logic --
+    default:
+        # logic --
+        # break -- here break won't break the switch.
+}
+```
+
+***Error Handling***
+```
+- nil - special key to show the absence of value of variable
+```
